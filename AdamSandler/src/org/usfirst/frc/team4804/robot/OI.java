@@ -36,8 +36,10 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public static XboxController driverController;
+	public static XboxController operatorController;
 	
 	public OI() {
 		driverController = new XboxController(RobotMap.driverControllerId);
+		operatorController = new XboxController(RobotMap.operatorControllerId);
 	}
 }

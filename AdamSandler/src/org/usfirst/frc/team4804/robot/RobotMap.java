@@ -25,11 +25,18 @@ public class RobotMap {
 	public static int rightStickXId = 4;
 	public static int rightStickYId = 5;
 	
+	public static double driveSpeedMultiplier = 1;
 	//CANbus device IDs
 	/* 0: PDP
 	 * 1: PCM
-	 * 11-14: TalonSRX
+	 * 5 and 6: TalonSRX
 	 */
-	public static int leftDriveId = 11;
-	public static int rightDriveId = 14;
+	public static int lifterDriveId = 4;//unsure
+	public static int leftDriveId = 5;
+	public static int rightDriveId = 6;
+	public static int leftDriveEncoderId = 7;//7 and 8 aren't determined yet
+	public static int rightDriveEncoderId = 8;
+	public static int grabberId = 9;//still not determined
+	
+	
 }

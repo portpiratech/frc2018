@@ -1,12 +1,11 @@
 package org.usfirst.frc.team4804.robot.subsystems;
 
+import org.usfirst.frc.team4804.robot.CimMotor;
 import org.usfirst.frc.team4804.robot.OI;
 import org.usfirst.frc.team4804.robot.RobotMap;
 import org.usfirst.frc.team4804.robot.commands.Drive;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -18,12 +17,17 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	private TalonSRX leftMotor;
-	private TalonSRX rightMotor;
+	private CimMotor leftMotor;
+	private CimMotor rightMotor;
+	//private Encoder leftEncoder;
+	//private Encoder rightEncoder;
+	//currently no encoders on motors, but there might be later
 	
 	public DriveTrain(){
-		leftMotor = new TalonSRX(RobotMap.leftDriveId);
-		rightMotor = new TalonSRX(RobotMap.rightDriveId);
+		leftMotor = new CimMotor(RobotMap.leftDriveId);
+		rightMotor = new CimMotor(RobotMap.rightDriveId);
+		//leftEncoder = new Encoder(RobotMap.leftDriveEncoderId);
+		//rightEncoder = new Encoder(RobotMap.rightDriveEncoderId);
 	}
 	
     public void initDefaultCommand() {
@@ -32,11 +36,18 @@ public class DriveTrain extends Subsystem {
     }
     
     public void tankDrive() {
-    	double leftY = OI.driverController.getY(Hand.kLeft);
+    	double leftY = -OI.driverController.getY(Hand.kLeft);
     	double rightY = OI.driverController.getY(Hand.kRight);
     	
-    	leftMotor.set(ControlMode.PercentOutput, leftY);
-    	rightMotor.set(ControlMode.PercentOutput, rightY);
+    	double leftSpeed = leftY * RobotMap.driveSpeedMultiplier;
+    	double rightSpeed = rightY * RobotMap.driveSpeedMultiplier;
+    	
+    	leftMotor.setSpeed(leftSpeed);
+    	rightMotor.setSpeed(rightSpeed);
+    	
+    	
+    	
+    	
     }
 }
 
