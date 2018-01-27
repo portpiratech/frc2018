@@ -1,0 +1,30 @@
+package org.usfirst.frc.team4804.robot.subsystems;
+
+import org.usfirst.frc.team4804.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+/**
+ *
+ */
+public class ToggleDriveModeSubsystem extends Subsystem {
+
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
+
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    	//setDefaultCommand(new ToggleDriveModeCommand());
+    }
+    
+    public void toggleDriveMode() {
+    	System.out.println("Subsystem Called");
+    	if(Robot.driveMode == Robot.DriveMode.TankDrive) {
+    		Robot.driveMode = Robot.DriveMode.ArcadeDrive;
+    	} else {
+    		Robot.driveMode = Robot.DriveMode.TankDrive;
+    	}
+    }
+}
+
