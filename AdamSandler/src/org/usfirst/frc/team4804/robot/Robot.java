@@ -1,13 +1,13 @@
 
 package org.usfirst.frc.team4804.robot;
 
-import org.usfirst.frc.team4804.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4804.robot.subsystems.DriveTrainV2;
 //import org.usfirst.frc.team4804.robot.subsystems.Grabber;
+import org.usfirst.frc.team4804.robot.subsystems.ToggleDriveModeSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,13 +19,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
+	public static DriveMode driveMode;
+	
+	public static enum DriveMode {
+		TankDrive,
+		ArcadeDrive
+	}
 
-	public static final DriveTrain driveTrain = new DriveTrain();
+	public static final DriveTrainV2 driveTrain = new DriveTrainV2();
+	public static ToggleDriveModeSubsystem toggleDriveMode = new ToggleDriveModeSubsystem();
 	//public static final Grabber grabber = new Grabber();
 	public static OI oi;
 	
-	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	private Command autonomousCommand;
+	private SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	
 	/**
@@ -35,6 +43,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
+		Robot.driveMode = Robot.DriveMode.TankDrive;
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -113,6 +122,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
+		//LiveWindow.run();
 	}
 }

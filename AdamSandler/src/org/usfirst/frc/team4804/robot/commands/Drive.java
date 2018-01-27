@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+
 public class Drive extends Command {
 
     public Drive() {
@@ -21,7 +22,7 @@ public class Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.tankDrive();
+    	Robot.driveTrain.tankArcadeDrive();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -38,3 +39,4 @@ public class Drive extends Command {
     protected void interrupted() {
     }
 }
+
