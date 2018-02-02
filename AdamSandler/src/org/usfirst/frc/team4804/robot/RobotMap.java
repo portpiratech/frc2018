@@ -25,7 +25,10 @@ public class RobotMap {
 	public static int rightStickXId = 4;
 	public static int rightStickYId = 5;
 	
+	// Speeds and Multipliers
 	public static double driveSpeedMultiplier = 1;
+	public static double conveyorSpeed = .5;
+	
 	//CANbus device IDs
 	/* 0: PDP
 	 * 1: PCM
@@ -37,7 +40,10 @@ public class RobotMap {
 	public static int leftDriveEncoderId = 7;//7 and 8 aren't determined yet
 	public static int rightDriveEncoderId = 8;
 	public static int grabberId = 9;//still not determined
+	public static int conveyorId = 10;//still not determined
 	
+	// DIO
+	public static int conveyorLimitId = 11;//still not determined
 	
 	
 }

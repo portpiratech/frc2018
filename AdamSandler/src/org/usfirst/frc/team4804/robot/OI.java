@@ -1,11 +1,10 @@
 package org.usfirst.frc.team4804.robot;
 
+import org.usfirst.frc.team4804.robot.commands.LoadUnload;
 import org.usfirst.frc.team4804.robot.commands.ToggleDriveModeCommand;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -43,12 +42,18 @@ public class OI {
 	public static XboxController driverController;
 	public static XboxController operatorController;
 	public static JoystickButton backButton;
+	public static JoystickButton yButton;
+	public static JoystickButton xButton;
 	
 	public OI() {
 		driverController = new XboxController(RobotMap.driverControllerId);
 		operatorController = new XboxController(RobotMap.operatorControllerId);
-		backButton = new JoystickButton(driverController, 7);
+		backButton = new JoystickButton(driverController, 7);					 //CHECK ID'S
+		yButton = new JoystickButton(operatorController, 4);
+		xButton = new JoystickButton(operatorController, 3);
 		
+		yButton.whenPressed(new LoadUnload(true));
+		xButton.whenPressed(new LoadUnload(false));
 		backButton.whenPressed(new ToggleDriveModeCommand());
 	}
 }
