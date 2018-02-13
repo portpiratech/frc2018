@@ -41,9 +41,13 @@ public class RobotMap {
 	public static int rightDriveEncoderId = 8;
 	public static int grabberId = 9;//still not determined
 	public static int conveyorId = 10;//still not determined
+	public static int grabberMotorId = 12;
 	
 	// DIO
 	public static int conveyorLimitId = 11;//still not determined
 	
+	//Grabber
+	public static int grabberMaxCurrent = 5;
+	public static int grabberEncoderId = 1;
 	
 }

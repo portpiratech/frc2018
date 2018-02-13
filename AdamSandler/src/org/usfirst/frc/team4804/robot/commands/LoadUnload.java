@@ -13,7 +13,7 @@ public class LoadUnload extends Command {
 	
     public LoadUnload(boolean isLoad) {
         // Use requires() here to declare subsystem dependencies
-        this.isLoad = isLoad;    	
+        this.isLoad = isLoad;   	
     	requires(Robot.conveyor);
     }
 

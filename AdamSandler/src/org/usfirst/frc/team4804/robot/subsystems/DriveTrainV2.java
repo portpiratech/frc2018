@@ -33,35 +33,51 @@ public class DriveTrainV2 extends Subsystem {
     	setDefaultCommand(new Drive());
     }
     
-    public void tankArcadeDrive(){
+    public void tankArcadeDrive() {
 
-    	if(Robot.driveMode == Robot.DriveMode.ArcadeDrive){
-    		double throttleValue = OI.driverController.getX(Hand.kLeft);
-        	double turnValue = OI.driverController.getY(Hand.kLeft);
+    	if(Robot.driveMode == Robot.DriveMode.ArcadeDrive)
+    	{
+    		double turnValue = OI.driverController.getX(Hand.kLeft);
+        	double throttleValue = OI.driverController.getY(Hand.kLeft);
         	
-        	double leftValue = (throttleValue+turnValue)*RobotMap.driveSpeedMultiplier;
-        	double rightValue = (throttleValue-turnValue)*RobotMap.driveSpeedMultiplier;
+        	double leftValue = (turnValue+throttleValue)*RobotMap.driveSpeedMultiplier;
+        	double rightValue = (turnValue-throttleValue)*RobotMap.driveSpeedMultiplier;
         	
         	boolean halfSpeed  = OI.driverController.getBumper(Hand.kRight);
         	
-        	if(halfSpeed == true){	
+        	if(halfSpeed)
+        	{	
         		leftMotor.setSpeed(leftValue/2);
         		rightMotor.setSpeed(rightValue/2);
         	}
-        	else{
+        	else
+        	{
         		leftMotor.setSpeed(leftValue);
             	rightMotor.setSpeed(rightValue); 
         	}
         	
-    	} else {
+    	}
+    	else
+    	{
     		double leftY = -OI.driverController.getY(Hand.kLeft);
         	double rightY = OI.driverController.getY(Hand.kRight);
         	
         	double leftSpeed = leftY * RobotMap.driveSpeedMultiplier;
         	double rightSpeed = rightY * RobotMap.driveSpeedMultiplier;
         	
-        	leftMotor.setSpeed(leftSpeed);
-        	rightMotor.setSpeed(rightSpeed);
+        	boolean halfSpeed = OI.driverController.getBumper(Hand.kRight);
+        	
+        	if(halfSpeed)
+        	{
+        		leftMotor.setSpeed(leftSpeed/2);
+            	rightMotor.setSpeed(rightSpeed/2);
+        	}
+        	else
+        	{
+        		leftMotor.setSpeed(leftSpeed);
+            	rightMotor.setSpeed(rightSpeed);
+        	}
+        	
     	}
     }
 }

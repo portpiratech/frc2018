@@ -13,7 +13,6 @@ public class ToggleDriveModeCommand extends Command {
 	
 	
     public ToggleDriveModeCommand() {
-    	System.out.println("Hello");
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.toggleDriveMode);
     }
@@ -25,13 +24,11 @@ public class ToggleDriveModeCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Executing");
     	Robot.toggleDriveMode.toggleDriveMode();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	System.out.println("Done");
         return true;
     }
 
