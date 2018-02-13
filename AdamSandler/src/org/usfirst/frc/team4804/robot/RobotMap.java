@@ -15,6 +15,7 @@ public class RobotMap {
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
+	//Trying to fix merge conflicts
 	// public static int rangefinderModule = 1;
 	
 	//XBox controller IDs
