@@ -8,6 +8,7 @@ import org.usfirst.frc.team4804.robot.subsystems.Lifter;
 //import org.usfirst.frc.team4804.robot.subsystems.Grabber;
 import org.usfirst.frc.team4804.robot.subsystems.ToggleDriveModeSubsystem;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -41,6 +42,8 @@ public class Robot extends IterativeRobot {
 	private Command autonomousCommand;
 	private SendableChooser<Command> chooser = new SendableChooser<>();
 	
+	public static DigitalInput switch1, switch2, switch3;
+	
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -53,6 +56,10 @@ public class Robot extends IterativeRobot {
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		switch1 = new DigitalInput(RobotMap.posSwitch1);
+    	switch2 = new DigitalInput(RobotMap.posSwitch2);
+    	switch3 = new DigitalInput(RobotMap.posSwitch3);
 	}
 
 	/**
@@ -68,6 +75,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
 	}
 
 	/**
@@ -115,6 +123,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
 	}
 
 	@Override
@@ -133,6 +142,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
 	}
 
 	/**

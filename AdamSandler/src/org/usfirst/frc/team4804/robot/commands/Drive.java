@@ -49,9 +49,9 @@ public class Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	switch1 = new DigitalInput(RobotMap.posSwitch1);
-    	switch2 = new DigitalInput(RobotMap.posSwitch2);
-    	switch3 = new DigitalInput(RobotMap.posSwitch3);
+    	switch1 = Robot.switch1;
+    	switch2 = Robot.switch2;
+    	switch3 = Robot.switch3;
     	
     	SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
     	
