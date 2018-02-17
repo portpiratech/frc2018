@@ -41,6 +41,9 @@ public class RobotMap {
 	
 	// DIO
 	public static int conveyorLimitId = 11;//still not determined
+	public static int posSwitch1 = 0;
+	public static int posSwitch2 = 1;
+	public static int posSwitch3 = 2;
 	
 	//DriveTrain
 	public static double driveSpeedMultiplier = 0.5;

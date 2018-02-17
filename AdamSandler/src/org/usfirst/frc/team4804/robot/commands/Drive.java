@@ -1,9 +1,12 @@
 package org.usfirst.frc.team4804.robot.commands;
 
 import org.usfirst.frc.team4804.robot.Robot;
+import org.usfirst.frc.team4804.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -11,22 +14,33 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class Drive extends Command {
 	
-	boolean auto;
-	double sec, leftSpeed, rightSpeed;
+	boolean auto, turn;
+	double sec, leftSpeed, rightSpeed, degrees;
+	DigitalInput switch1, switch2, switch3;
 	
     public Drive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	auto = false;
+    	this.auto = false;
+    	this.turn = false;
     	requires(Robot.driveTrain);
     }
     
     public Drive(double sec, double leftSpeed, double rightSpeed) {
     	requires(Robot.driveTrain);
-    	auto = true;
+    	this.auto = true;
+    	this.turn = false;
     	this.sec = sec;
     	this.leftSpeed = leftSpeed;
     	this.rightSpeed = rightSpeed;
+    }
+    
+    public Drive(boolean turn, double degrees)
+    {
+    	requires(Robot.driveTrain);
+    	this.auto = true;
+    	this.turn = true;
+    	this.degrees = degrees;
     }
 
     // Called just before this Command runs the first time
@@ -35,11 +49,49 @@ public class Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	switch1 = new DigitalInput(RobotMap.posSwitch1);
+    	switch2 = new DigitalInput(RobotMap.posSwitch2);
+    	switch3 = new DigitalInput(RobotMap.posSwitch3);
+    	
+    	SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
+    	
     	if(auto) {
-    		Robot.driveTrain.drive(leftSpeed, rightSpeed);
-    		Timer.delay(sec);
+    		//auto drive mode
+    		if(turn) {
+    			//auto turn to input degrees
+    			double initAngle = Robot.driveTrain.getGyroAngle();
+    			
+    			//turn right if degrees > 0, turn left if degrees <= 0
+    			if(Math.signum(degrees) == 1.0){
+    				Robot.driveTrain.drive(0.5, -0.5);
+    			}
+    			else {
+    				Robot.driveTrain.drive(-0.5, 0.5);
+    			}
+    			
+    			//keep turning until angle reached or command times out
+    			double initTime = System.currentTimeMillis();
+    			double timeoutMillis = 3000;
+    			while(Math.abs(Robot.driveTrain.getGyroAngle() - initAngle) < degrees)
+    			{
+    				//do nothing
+    				if(System.currentTimeMillis() - initTime > timeoutMillis)
+    				{
+    					break;
+    				}
+    			}
+    			
+    			//stop driving
+    			Robot.driveTrain.drive(0, 0);
+    		}
+    		else {
+    			//move at set speeds for specified time
+    			Robot.driveTrain.drive(leftSpeed, rightSpeed);
+    			Timer.delay(sec);
+    		}
     	}
     	else {
+    		//manual control
     		Robot.driveTrain.tankArcadeDrive();
     	}
     }

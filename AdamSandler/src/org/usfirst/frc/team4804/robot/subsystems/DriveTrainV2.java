@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4804.robot.subsystems;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -16,6 +17,7 @@ public class DriveTrainV2 extends Subsystem {
 
 	private CimMotor leftMotor;
 	private CimMotor rightMotor;
+	private ADXRS450_Gyro gyro;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -23,7 +25,7 @@ public class DriveTrainV2 extends Subsystem {
 	public DriveTrainV2(){
 		leftMotor = new CimMotor(RobotMap.leftDriveId);
 		rightMotor = new CimMotor(RobotMap.rightDriveId);
-		
+		gyro = new ADXRS450_Gyro();
 	}
 
 
@@ -31,6 +33,18 @@ public class DriveTrainV2 extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new Drive());
+    }
+    
+    public void resetGyro() {
+    	gyro.reset();
+    }
+    
+    public double getGyroAngle() {
+    	return gyro.getAngle();
+    }
+    
+    public double getGyroRate() {
+    	return gyro.getRate();
     }
     
     public void drive(double leftSpeed, double rightSpeed) {
