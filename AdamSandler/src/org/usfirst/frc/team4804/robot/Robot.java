@@ -4,6 +4,7 @@ package org.usfirst.frc.team4804.robot;
 import org.usfirst.frc.team4804.robot.subsystems.Conveyor;
 import org.usfirst.frc.team4804.robot.subsystems.DriveTrainV2;
 import org.usfirst.frc.team4804.robot.subsystems.Grabber;
+import org.usfirst.frc.team4804.robot.subsystems.Lifter;
 //import org.usfirst.frc.team4804.robot.subsystems.Grabber;
 import org.usfirst.frc.team4804.robot.subsystems.ToggleDriveModeSubsystem;
 
@@ -33,7 +34,7 @@ public class Robot extends IterativeRobot {
 	public static ToggleDriveModeSubsystem toggleDriveMode = new ToggleDriveModeSubsystem();
 	public static Conveyor conveyor = new Conveyor();
 	public static Grabber grabber = new Grabber();
-	//public static final Grabber grabber = new Grabber();
+	public static Lifter lifter = new Lifter();
 	public static OI oi;
 	
 	private Command autonomousCommand;

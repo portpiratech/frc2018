@@ -4,9 +4,8 @@ package org.usfirst.frc.team4804.robot.subsystems;
 import org.usfirst.frc.team4804.robot.CimMotor;
 import org.usfirst.frc.team4804.robot.OI;
 import org.usfirst.frc.team4804.robot.RobotMap;
-import org.usfirst.frc.team4804.robot.commands.Drive;
+import org.usfirst.frc.team4804.robot.commands.Lift;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -31,15 +30,15 @@ public class Lifter extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new Drive());
+        setDefaultCommand(new Lift());
     }
     
     public void liftDrive() {
     	
-    	double leftSpeed = OI.driverController.getY(Hand.kRight);
+    	double liftSpeed = OI.operatorController.getY(Hand.kRight);
     	//need to know if we need a button or analog input.
     	
-    	motor.setSpeed(leftSpeed);
+    	motor.setSpeed(liftSpeed);
 
     	
     }

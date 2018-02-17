@@ -21,7 +21,7 @@ public class Grabber extends Subsystem {
 	
 	
 	public Grabber(){
-		grabberMotor = new SeatMotor(RobotMap.grabberMotorId);
+		grabberMotor = new SeatMotor(RobotMap.grabberId);
 		grabberAnalogTrigger = new AnalogTrigger(RobotMap.grabberEncoderId);
 		grabberAnalogTrigger.setLimitsVoltage(3.0, 3.75);		
 		count = 0;

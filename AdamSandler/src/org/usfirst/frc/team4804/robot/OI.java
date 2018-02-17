@@ -42,27 +42,43 @@ public class OI {
 	
 	public static XboxController driverController;
 	public static XboxController operatorController;
-	public static JoystickButton backButton;
-	public static JoystickButton yButton;
-	public static JoystickButton xButton;
-	public static JoystickButton aButton;
-	public static JoystickButton bButton;
+	public static JoystickButton backButtonDriver;
+	public static JoystickButton yButtonOperator;
+	public static JoystickButton xButtonOperator;
+	public static JoystickButton aButtonOperator;
+	public static JoystickButton bButtonOperator;
 	
 	
 	
 	public OI() {
 		driverController = new XboxController(RobotMap.driverControllerId);
 		operatorController = new XboxController(RobotMap.operatorControllerId);
-		backButton = new JoystickButton(driverController, 7);					 //CHECK ID'S
-		yButton = new JoystickButton(operatorController, 4);
-		xButton = new JoystickButton(operatorController, 3);
-		aButton = new JoystickButton(operatorController, 1);
-		bButton = new JoystickButton(operatorController, 2);
 		
-		yButton.whenPressed(new LoadUnload(true));
-		xButton.whenPressed(new LoadUnload(false));
-		aButton.whenPressed(new Grab(true));
-		bButton.whenPressed(new Grab(false));
-		backButton.whenPressed(new ToggleDriveModeCommand());
+		//name buttons to include which controller
+		backButtonDriver = new JoystickButton(driverController, 7);					 //CHECK ID'S
+		yButtonOperator = new JoystickButton(operatorController, 4);
+		xButtonOperator = new JoystickButton(operatorController, 3);
+		aButtonOperator = new JoystickButton(operatorController, 1);
+		bButtonOperator = new JoystickButton(operatorController, 2);
+		
+		yButtonOperator.whenPressed(new LoadUnload(true));
+		xButtonOperator.whenPressed(new LoadUnload(false));
+		aButtonOperator.whenPressed(new Grab(true));
+		bButtonOperator.whenPressed(new Grab(false));
+		backButtonDriver.whenPressed(new ToggleDriveModeCommand());
+		
+		//driver leftStick --> arcadeDrive
+		//drive leftY + rightY --> tankDrive
+		//operator rightY --> lifter
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

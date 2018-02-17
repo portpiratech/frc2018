@@ -33,6 +33,11 @@ public class DriveTrainV2 extends Subsystem {
     	setDefaultCommand(new Drive());
     }
     
+    public void drive(double leftSpeed, double rightSpeed) {
+    	leftMotor.setSpeed(-leftSpeed);
+    	rightMotor.setSpeed(rightSpeed);
+    }
+    
     public void tankArcadeDrive() {
 
     	if(Robot.driveMode == Robot.DriveMode.ArcadeDrive)
@@ -47,14 +52,12 @@ public class DriveTrainV2 extends Subsystem {
         	
         	if(halfSpeed)
         	{	
-        		leftMotor.setSpeed(leftValue/2);
-        		rightMotor.setSpeed(rightValue/2);
+        		leftValue /= 2;
+        		rightValue /= 2;
         	}
-        	else
-        	{
-        		leftMotor.setSpeed(leftValue);
-            	rightMotor.setSpeed(rightValue); 
-        	}
+        	
+        	leftMotor.setSpeed(leftValue);
+        	rightMotor.setSpeed(rightValue);
         	
     	}
     	else
@@ -68,15 +71,13 @@ public class DriveTrainV2 extends Subsystem {
         	boolean halfSpeed = OI.driverController.getBumper(Hand.kRight);
         	
         	if(halfSpeed)
-        	{
-        		leftMotor.setSpeed(leftSpeed/2);
-            	rightMotor.setSpeed(rightSpeed/2);
+        	{	
+        		leftSpeed /= 2;
+        		rightSpeed /= 2;
         	}
-        	else
-        	{
-        		leftMotor.setSpeed(leftSpeed);
-            	rightMotor.setSpeed(rightSpeed);
-        	}
+        	
+        	leftMotor.setSpeed(leftSpeed);
+        	rightMotor.setSpeed(rightSpeed);
         	
     	}
     }
