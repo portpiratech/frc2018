@@ -3,11 +3,7 @@ package org.usfirst.frc.team4804.robot.subsystems;
 
 import org.usfirst.frc.team4804.robot.RobotMap;
 import org.usfirst.frc.team4804.robot.SeatMotor;
-
-
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogTrigger;
-import edu.wpi.first.wpilibj.AnalogTriggerOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -33,7 +29,6 @@ public class Grabber extends Subsystem {
 		grabberMotor.getMotor().enableCurrentLimit(true);
 		grabberMotor.getMotor().configPeakCurrentLimit(0, 0);
 		grabberMotor.getMotor().configContinuousCurrentLimit(RobotMap.grabberMaxCurrent, 500);
-		
 		
 	}
 	
@@ -69,7 +64,7 @@ public class Grabber extends Subsystem {
 		System.out.println(count);
 		//Catches the rising edges
 		if(encState != getEncoderState() && getEncoderState()) { 
-			count++;
+			count += (int) getMotorOutputPercentSignum();
 		}
 		encState = getEncoderState();
 		

@@ -33,16 +33,16 @@ public class Conveyor extends Subsystem {
     public void convey(double timeSec, int direction){
     	
     	//If limitSwitch is not on robot
-    	/*conveyorMotor.setSpeed(RobotMap.conveyorSpeed * direction);
+    	conveyorMotor.setSpeed(RobotMap.conveyorSpeed * direction);
     	Timer.delay(timeSec);
-    	conveyorMotor.setSpeed(0);*/
+    	conveyorMotor.setSpeed(0);
     	
     	//If limitSwitch exists
-    	conveyorMotor.setSpeed(RobotMap.conveyorSpeed);
+    	/*conveyorMotor.setSpeed(RobotMap.conveyorSpeed);
     	while(!limitSwitch.get()){
     		
     	}
-    	conveyorMotor.setSpeed(0);
+    	conveyorMotor.setSpeed(0);*/
     }
 }
 

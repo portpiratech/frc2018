@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4804.robot;
 
+import org.usfirst.frc.team4804.robot.commands.Grab;
 import org.usfirst.frc.team4804.robot.commands.LoadUnload;
 import org.usfirst.frc.team4804.robot.commands.ToggleDriveModeCommand;
 
@@ -44,6 +45,10 @@ public class OI {
 	public static JoystickButton backButton;
 	public static JoystickButton yButton;
 	public static JoystickButton xButton;
+	public static JoystickButton aButton;
+	public static JoystickButton bButton;
+	
+	
 	
 	public OI() {
 		driverController = new XboxController(RobotMap.driverControllerId);
@@ -51,9 +56,13 @@ public class OI {
 		backButton = new JoystickButton(driverController, 7);					 //CHECK ID'S
 		yButton = new JoystickButton(operatorController, 4);
 		xButton = new JoystickButton(operatorController, 3);
+		aButton = new JoystickButton(operatorController, 1);
+		bButton = new JoystickButton(operatorController, 2);
 		
 		yButton.whenPressed(new LoadUnload(true));
 		xButton.whenPressed(new LoadUnload(false));
+		aButton.whenPressed(new Grab(true));
+		bButton.whenPressed(new Grab(false));
 		backButton.whenPressed(new ToggleDriveModeCommand());
 	}
 }

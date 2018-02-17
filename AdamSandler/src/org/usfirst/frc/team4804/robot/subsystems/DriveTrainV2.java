@@ -40,8 +40,8 @@ public class DriveTrainV2 extends Subsystem {
     		double turnValue = OI.driverController.getX(Hand.kLeft);
         	double throttleValue = OI.driverController.getY(Hand.kLeft);
         	
-        	double leftValue = (turnValue+throttleValue)*RobotMap.driveSpeedMultiplier;
-        	double rightValue = (turnValue-throttleValue)*RobotMap.driveSpeedMultiplier;
+        	double leftValue = -(turnValue+throttleValue)*RobotMap.driveSpeedMultiplier;
+        	double rightValue = -(turnValue-throttleValue)*RobotMap.driveSpeedMultiplier;
         	
         	boolean halfSpeed  = OI.driverController.getBumper(Hand.kRight);
         	

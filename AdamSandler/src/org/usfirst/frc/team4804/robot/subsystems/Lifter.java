@@ -18,13 +18,13 @@ public class Lifter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	//private CimMotor motor;
+	private CimMotor motor;
 	//private Encoder leftEncoder;
 	//private Encoder rightEncoder;
 	//currently no encoders on motors, but there might be later
 	
 	public Lifter(){
-		//motor = new CimMotor(RobotMap.lifterDriveId);
+		motor = new CimMotor(RobotMap.lifterDriveId);
 		//leftEncoder = new Encoder(RobotMap.leftDriveEncoderId);
 		//rightEncoder = new Encoder(RobotMap.rightDriveEncoderId);
 	}
@@ -36,10 +36,10 @@ public class Lifter extends Subsystem {
     
     public void liftDrive() {
     	
-    	//double  = OI.driverController.getY(Hand.kRight);
+    	double leftSpeed = OI.driverController.getY(Hand.kRight);
     	//need to know if we need a button or analog input.
     	
-    	//motor.setSpeed(leftSpeed);
+    	motor.setSpeed(leftSpeed);
 
     	
     }

@@ -23,6 +23,4 @@ public class CimMotor {
 		public void setSpeed(double speed){
 			motor.set(ControlMode.PercentOutput, speed);
 		}
-		
-
 }
