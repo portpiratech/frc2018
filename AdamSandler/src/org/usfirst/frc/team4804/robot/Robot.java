@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team4804.robot;
 
+import org.usfirst.frc.team4804.robot.commands.Autonomous;
 import org.usfirst.frc.team4804.robot.subsystems.Conveyor;
 import org.usfirst.frc.team4804.robot.subsystems.DriveTrainV2;
 import org.usfirst.frc.team4804.robot.subsystems.Grabber;
@@ -94,16 +95,17 @@ public class Robot extends IterativeRobot {
 		//gameData is a string relative to the alliance color; "ABC" where A = closest switch, B = scale, C = furthest switch
 		//A, B, C are either L (left) or R (right)
 		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if(gameData.charAt(0) == 'L')
-		{
+		//gameData = DriverStation.getInstance().getGameSpecificMessage();
+		//if(gameData.charAt(0) == 'L')
+		//{
 			//Put left auto code here
-		} else {
+		//} else {
 			//Put right auto code here
-		}
+		//}
 		
-		autonomousCommand = chooser.getSelected();
-
+		//autonomousCommand = chooser.getSelected();
+		autonomousCommand = new Autonomous(true);
+		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

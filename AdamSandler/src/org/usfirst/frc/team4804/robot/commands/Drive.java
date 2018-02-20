@@ -80,15 +80,15 @@ public class Drive extends Command {
     					break;
     				}
     			}
-    			
-    			//stop driving
-    			Robot.driveTrain.drive(0, 0);
     		}
     		else {
     			//move at set speeds for specified time
     			Robot.driveTrain.drive(leftSpeed, rightSpeed);
     			Timer.delay(sec);
     		}
+
+			//stop driving
+			Robot.driveTrain.drive(0, 0);
     	}
     	else {
     		//manual control

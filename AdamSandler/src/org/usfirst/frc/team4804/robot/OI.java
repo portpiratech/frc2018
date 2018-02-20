@@ -67,6 +67,7 @@ public class OI {
 		bButtonOperator.whenPressed(new Grab(false));
 		backButtonDriver.whenPressed(new ToggleDriveModeCommand());
 		
+		//driver rightBumper --> half speed drive
 		//driver leftStick --> arcadeDrive
 		//drive leftY + rightY --> tankDrive
 		//operator rightY --> lifter

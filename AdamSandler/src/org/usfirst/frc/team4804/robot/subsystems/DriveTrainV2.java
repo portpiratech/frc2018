@@ -3,6 +3,7 @@ package org.usfirst.frc.team4804.robot.subsystems;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4804.robot.CimMotor;
 import org.usfirst.frc.team4804.robot.OI;
@@ -76,6 +77,7 @@ public class DriveTrainV2 extends Subsystem {
     	}
     	else
     	{
+    		RobotMap.driveSpeedMultiplier = SmartDashboard.getNumber("Drive speed", RobotMap.driveSpeedMultiplier);
     		double leftY = -OI.driverController.getY(Hand.kLeft);
         	double rightY = OI.driverController.getY(Hand.kRight);
         	

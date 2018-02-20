@@ -56,6 +56,10 @@ public class Grabber extends Subsystem {
 		 return grabberAnalogTrigger.getTriggerState();
 	}
 	
+	public double getMotorOutputPercent() {
+		return grabberMotor.getMotor().getMotorOutputPercent();
+	}
+	
 	public double getMotorOutputPercentSignum() {
 		return Math.signum(grabberMotor.getMotor().getMotorOutputPercent());
 	}

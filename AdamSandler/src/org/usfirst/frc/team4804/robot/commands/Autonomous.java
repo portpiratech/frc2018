@@ -4,6 +4,7 @@ import org.usfirst.frc.team4804.robot.Robot;
 import org.usfirst.frc.team4804.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,6 +22,9 @@ public class Autonomous extends CommandGroup {
     	
     	SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
     	
+    	addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    	//Timer.delay(3.0);
+    	//addSequential(new LoadUnload(false, 1.0)); //unload cube
     	/*
     	if(switch1.get())
     	{

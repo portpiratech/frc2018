@@ -36,8 +36,8 @@ public class RobotMap {
 	public static int rightDriveId = 6;
 	public static int leftDriveEncoderId = 7;//7 and 8 aren't determined yet
 	public static int rightDriveEncoderId = 8;
-	public static int grabberId = 3;//still not determined
-	public static int conveyorId = 2;//still not determined
+	public static int grabberId = 2;//should be 3
+	public static int conveyorId = 3;//should be 2
 	
 	// DIO
 	public static int conveyorLimitId = 11;//still not determined
@@ -46,10 +46,11 @@ public class RobotMap {
 	public static int posSwitch3 = 2;
 	
 	//DriveTrain
-	public static double driveSpeedMultiplier = 0.5;
+	public static double driveSpeedMultiplier = 1.0;
 	
 	//Conveyor
-	public static double conveyorSpeed = .5;
+	public static double loadSpeed = .3;
+	public static double unloadSpeed = .75;
 	
 	//Grabber
 	public static int grabberMaxCurrent = 5;
