@@ -15,15 +15,14 @@ public class ToggleDriveModeSubsystem extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	//setDefaultCommand(new ToggleDriveModeCommand());
     }
     
-    public void toggleDriveMode() {
-    	System.out.println("Subsystem Called");
-    	if(Robot.driveMode == Robot.DriveMode.TankDrive) {
+    public void toggleDriveMode(){
+    	if(Robot.driveMode == Robot.DriveMode.TankDrive){
     		Robot.driveMode = Robot.DriveMode.ArcadeDrive;
-    	} else {
-    		Robot.driveMode = Robot.DriveMode.TankDrive;
+    	}
+    	else{
+    		Robot.driveMode = Robot.DriveMode.TankDrive;	
     	}
     }
 }

@@ -50,11 +50,11 @@ public class Conveyor extends Subsystem {
     }
     
     public void load(){
-    	conveyorMotor.setSpeed(RobotMap.loadSpeed * 1);
+    	conveyorMotor.setSpeed(RobotMap.loadSpeed * -1);
     }
     
     public void unload(){
-    	conveyorMotor.setSpeed(RobotMap.unloadSpeed * -1);
+    	conveyorMotor.setSpeed(RobotMap.unloadSpeed * 1);
     }
     
     public void stop(){

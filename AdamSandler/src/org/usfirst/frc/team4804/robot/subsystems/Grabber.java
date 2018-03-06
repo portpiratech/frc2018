@@ -38,7 +38,7 @@ public class Grabber extends Subsystem {
     }
 	
 	public void close(double setSpeed) {
-		grabberMotor.setSpeed(setSpeed);
+		grabberMotor.setSpeed(-setSpeed);
 	}
 
 	public void smartDashboardOutput() {

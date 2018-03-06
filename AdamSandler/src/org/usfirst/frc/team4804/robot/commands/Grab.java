@@ -69,7 +69,7 @@ public class Grab extends Command {
     		Robot.grabber.close(0);
     	}
     	else{
-    		Robot.grabber.close(0.25);
+    		Robot.grabber.close(0.45);
     	}
     	SmartDashboard.putNumber("Grabber speed", Robot.grabber.getMotorOutputPercent());
     }
