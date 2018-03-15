@@ -2,6 +2,7 @@ package org.usfirst.frc.team4804.robot;
 
 import org.usfirst.frc.team4804.robot.commands.Grab;
 import org.usfirst.frc.team4804.robot.commands.LoadUnload;
+import org.usfirst.frc.team4804.robot.commands.SparkControl;
 import org.usfirst.frc.team4804.robot.commands.ToggleDriveModeCommand;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -47,7 +48,8 @@ public class OI {
 	public static JoystickButton xButtonOperator;
 	public static JoystickButton aButtonOperator;
 	public static JoystickButton bButtonOperator;
-	
+	public static JoystickButton backButtonOperator;
+	public static JoystickButton startButtonOperator;
 	
 	
 	public OI() {
@@ -55,11 +57,13 @@ public class OI {
 		operatorController = new XboxController(RobotMap.operatorControllerId);
 		
 		//name buttons to include which controller
-		backButtonDriver = new JoystickButton(driverController, 7);					 //CHECK ID'S
+		backButtonDriver = new JoystickButton(driverController, 7);
 		yButtonOperator = new JoystickButton(operatorController, 4);
 		xButtonOperator = new JoystickButton(operatorController, 3);
 		aButtonOperator = new JoystickButton(operatorController, 1);
 		bButtonOperator = new JoystickButton(operatorController, 2);
+		backButtonOperator = new JoystickButton(operatorController, 7);
+		startButtonOperator = new JoystickButton(operatorController, 8);
 		
 		yButtonOperator.whenPressed(new LoadUnload(true));
 		xButtonOperator.whenPressed(new LoadUnload(false));
@@ -72,6 +76,7 @@ public class OI {
 		//drive leftY + rightY --> tankDrive
 		//operator rightY --> lifter
 		
+		//OPERATOR LEFT TRIGGER + RIGHT TRIGGER --> LOCK LIFTER
 	}
 	
 	

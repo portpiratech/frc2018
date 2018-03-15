@@ -32,14 +32,17 @@ public class RobotMap {
 	 * 2-6: TalonSRX
 	 */
 	public static int lifterDriveId = 5;//unsure
-	public static int leftDriveId = 4;
-	public static int rightDriveId = 6;
+	public static int leftDriveId = 12;
+	public static int rightDriveId = 13;
 	public static int leftDriveEncoderId = 7;//7 and 8 aren't determined yet
 	public static int rightDriveEncoderId = 8;
 	public static int grabberId = 2;//should be 3
 	public static int conveyorId = 3;//should be 2
 	
-	// DIO
+	//PWM
+	public static int sparkId = 0;
+	
+	//DIO
 	public static int conveyorLimitId = 11;//still not determined
 	public static int posSwitch1 = 0;
 	public static int posSwitch2 = 1;

@@ -6,6 +6,7 @@ import org.usfirst.frc.team4804.robot.subsystems.Conveyor;
 import org.usfirst.frc.team4804.robot.subsystems.DriveTrainV2;
 import org.usfirst.frc.team4804.robot.subsystems.Grabber;
 import org.usfirst.frc.team4804.robot.subsystems.Lifter;
+import org.usfirst.frc.team4804.robot.subsystems.SparkSubsystem;
 //import org.usfirst.frc.team4804.robot.subsystems.Grabber;
 import org.usfirst.frc.team4804.robot.subsystems.ToggleDriveModeSubsystem;
 
@@ -38,6 +39,7 @@ public class Robot extends IterativeRobot {
 	public static Conveyor conveyor = new Conveyor();
 	public static Grabber grabber = new Grabber();
 	public static Lifter lifter = new Lifter();
+	public static SparkSubsystem sparkSubsystem = new SparkSubsystem();
 	public static OI oi;
 	
 	private Command autonomousCommand;
@@ -94,17 +96,28 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		//gameData is a string relative to the alliance color; "ABC" where A = closest switch, B = scale, C = furthest switch
 		//A, B, C are either L (left) or R (right)
-		String gameData;
-		//gameData = DriverStation.getInstance().getGameSpecificMessage();
-		//if(gameData.charAt(0) == 'L')
-		//{
-			//Put left auto code here
-		//} else {
-			//Put right auto code here
-		//}
+		double tempTime = System.currentTimeMillis();
+		while(System.currentTimeMillis() - tempTime < 200)
+		{
+			//this is a timer delay to let the gamedata clear out
+		}
 		
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		boolean gameDataPresent = gameData.length() > 0;
+		boolean leftSide = true;
+		
+		if(gameDataPresent && gameData.charAt(0) == 'L')
+		{
+			//Put left auto code here
+			leftSide = true;
+		} else if(gameDataPresent && gameData.charAt(0) == 'R') {
+			//Put right auto code here
+			leftSide = false;
+		}
+		
+		autonomousCommand = new Autonomous(gameDataPresent, leftSide);
 		//autonomousCommand = chooser.getSelected();
-		autonomousCommand = new Autonomous(true);
+		//autonomousCommand = new Autonomous(true);
 		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

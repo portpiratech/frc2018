@@ -15,14 +15,46 @@ public class Autonomous extends CommandGroup {
 
 	DigitalInput switch1, switch2, switch3;
 	
-    public Autonomous(boolean leftSide) {
+    public Autonomous(boolean gameDataPresent, boolean switchOnLeftSide) {
     	switch1 = Robot.switch1;
     	switch2 = Robot.switch2;
     	switch3 = Robot.switch3;
     	
     	SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
     	
-    	addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    	if(gameDataPresent && (switch1.get() || switch3.get()) )
+    	{
+    		if(switchOnLeftSide)
+    		{
+    			if(switch1.get()) {
+    				addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    				Timer.delay(3.0);
+    				addSequential(new LoadUnload(false, 1.0)); //unload cube
+    			}
+    			else
+    			{
+    				addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    			}
+    		}
+    		else
+    		{
+    			if(switch3.get())
+    			{
+    				addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    				Timer.delay(3.0);
+    				addSequential(new LoadUnload(false, 1.0)); //unload cube
+    			}
+    			else
+    			{
+    				addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    			}
+    		}
+    	}
+    	else
+    	{
+    		addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    	}
+    	
     	//Timer.delay(3.0);
     	//addSequential(new LoadUnload(false, 1.0)); //unload cube
     	/*
