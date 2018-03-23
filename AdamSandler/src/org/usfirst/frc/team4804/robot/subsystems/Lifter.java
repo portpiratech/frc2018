@@ -36,8 +36,11 @@ public class Lifter extends Subsystem {
     public void liftDrive() {
     	
     	double liftSpeed = OI.operatorController.getY(Hand.kRight);
-    	//need to know if we need a button or analog input.
     	
+    	if(Math.abs(liftSpeed) < 0.2)
+    	{
+    		liftSpeed = 0;
+    	}
     	motor.setSpeed(liftSpeed);
 
     	

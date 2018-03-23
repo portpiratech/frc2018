@@ -1,11 +1,11 @@
 package org.usfirst.frc.team4804.robot.commands;
 
 import org.usfirst.frc.team4804.robot.Robot;
-import org.usfirst.frc.team4804.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -16,43 +16,50 @@ public class Autonomous extends CommandGroup {
 	DigitalInput switch1, switch2, switch3;
 	
     public Autonomous(boolean gameDataPresent, boolean switchOnLeftSide) {
+    	
+    	addSequential(new WaitCommand(2.0));
+    	
     	switch1 = Robot.switch1;
     	switch2 = Robot.switch2;
     	switch3 = Robot.switch3;
     	
-    	SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
+    	SmartDashboard.putBoolean("Auto switch 1", switch1.get());
+    	SmartDashboard.putBoolean("Auto switch 2", switch2.get());
+    	SmartDashboard.putBoolean("Auto switch 3", switch3.get());
+    	
     	
     	if(gameDataPresent && (switch1.get() || switch3.get()) )
+    	//if(false)
     	{
     		if(switchOnLeftSide)
     		{
     			if(switch1.get()) {
-    				addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    				addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for 3 seconds
     				Timer.delay(3.0);
     				addSequential(new LoadUnload(false, 1.0)); //unload cube
     			}
     			else
     			{
-    				addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    				addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for 3 seconds
     			}
     		}
     		else
     		{
     			if(switch3.get())
     			{
-    				addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    				addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for 3 seconds
     				Timer.delay(3.0);
     				addSequential(new LoadUnload(false, 1.0)); //unload cube
     			}
     			else
     			{
-    				addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    				addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for 3 seconds
     			}
     		}
     	}
-    	else
+    	else //switch 2 or no switches at all
     	{
-    		addSequential(new Drive(3.0, -0.6, -0.6)); //drive forward for 3 seconds
+    		addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for 3 seconds
     	}
     	
     	//Timer.delay(3.0);

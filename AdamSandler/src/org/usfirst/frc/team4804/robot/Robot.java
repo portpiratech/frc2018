@@ -58,11 +58,34 @@ public class Robot extends IterativeRobot {
 		Robot.driveMode = Robot.DriveMode.TankDrive;
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		//SmartDashboard.putData("Auto mode", chooser);
 		
 		switch1 = new DigitalInput(RobotMap.posSwitch1);
     	switch2 = new DigitalInput(RobotMap.posSwitch2);
     	switch3 = new DigitalInput(RobotMap.posSwitch3);
+    	
+    	initializeSmartDashboard();
+	}
+	
+	private void initializeSmartDashboard()
+	{
+		SmartDashboard.putBoolean("Auto switch 1", switch1.get());
+    	SmartDashboard.putBoolean("Auto switch 2", switch2.get());
+    	SmartDashboard.putBoolean("Auto switch 3", switch3.get());
+    	SmartDashboard.putNumber("Load speed", RobotMap.loadSpeed);
+    	SmartDashboard.putNumber("Unload speed", RobotMap.unloadSpeed);
+    	SmartDashboard.putNumber("Grab speed", RobotMap.grabSpeed);
+    	SmartDashboard.putNumber("Hold speed", RobotMap.holdSpeed);
+    	SmartDashboard.putNumber("Ungrab speed", RobotMap.ungrabSpeed);
+	}
+	
+	private void readFromSmartDashboard()
+	{
+		RobotMap.loadSpeed = SmartDashboard.getNumber("Load speed", RobotMap.loadSpeed);
+    	RobotMap.unloadSpeed = SmartDashboard.getNumber("Unload speed", RobotMap.unloadSpeed);
+    	RobotMap.grabSpeed = SmartDashboard.getNumber("Grab speed", RobotMap.grabSpeed);
+    	RobotMap.holdSpeed = SmartDashboard.getNumber("Hold speed", RobotMap.holdSpeed);
+    	RobotMap.ungrabSpeed = SmartDashboard.getNumber("Ungrab speed", RobotMap.ungrabSpeed);
 	}
 
 	/**
@@ -78,7 +101,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
+		SmartDashboard.putBoolean("Auto switch 1", switch1.get());
+    	SmartDashboard.putBoolean("Auto switch 2", switch2.get());
+    	SmartDashboard.putBoolean("Auto switch 3", switch3.get());
+    	readFromSmartDashboard();
 	}
 
 	/**
@@ -96,12 +122,10 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		//gameData is a string relative to the alliance color; "ABC" where A = closest switch, B = scale, C = furthest switch
 		//A, B, C are either L (left) or R (right)
-		double tempTime = System.currentTimeMillis();
-		while(System.currentTimeMillis() - tempTime < 200)
-		{
-			//this is a timer delay to let the gamedata clear out
-		}
 		
+		
+		//************Commented out to test if this was causing the robot to not move
+		/*
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		boolean gameDataPresent = gameData.length() > 0;
 		boolean leftSide = true;
@@ -116,6 +140,11 @@ public class Robot extends IterativeRobot {
 		}
 		
 		autonomousCommand = new Autonomous(gameDataPresent, leftSide);
+		*/
+		//************Commented out to test if this was causing the robot to not move
+		
+		autonomousCommand = new Autonomous(true, false);
+		
 		//autonomousCommand = chooser.getSelected();
 		//autonomousCommand = new Autonomous(true);
 		
@@ -138,7 +167,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
+		SmartDashboard.putBoolean("Auto switch 1", switch1.get());
+    	SmartDashboard.putBoolean("Auto switch 2", switch2.get());
+    	SmartDashboard.putBoolean("Auto switch 3", switch3.get());
+    	readFromSmartDashboard();
 	}
 
 	@Override
@@ -157,7 +189,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putBooleanArray("Auto switches", new boolean[]{switch1.get(), switch2.get(), switch3.get()});
+		SmartDashboard.putBoolean("Auto switch 1", switch1.get());
+    	SmartDashboard.putBoolean("Auto switch 2", switch2.get());
+    	SmartDashboard.putBoolean("Auto switch 3", switch3.get());
+    	readFromSmartDashboard();
 	}
 
 	/**

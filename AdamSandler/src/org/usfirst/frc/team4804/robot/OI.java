@@ -67,8 +67,8 @@ public class OI {
 		
 		yButtonOperator.whenPressed(new LoadUnload(true));
 		xButtonOperator.whenPressed(new LoadUnload(false));
-		aButtonOperator.whenPressed(new Grab(true));
-		bButtonOperator.whenPressed(new Grab(false));
+		//aButtonOperator.whileHeld(new Grab(true, true));
+		//bButtonOperator.whileHeld(new Grab(false, true));
 		backButtonDriver.whenPressed(new ToggleDriveModeCommand());
 		
 		//driver rightBumper --> half speed drive

@@ -32,8 +32,8 @@ public class RobotMap {
 	 * 2-6: TalonSRX
 	 */
 	public static int lifterDriveId = 5;//unsure
-	public static int leftDriveId = 12;
-	public static int rightDriveId = 13;
+	public static int leftDriveId = 4;
+	public static int rightDriveId = 6;
 	public static int leftDriveEncoderId = 7;//7 and 8 aren't determined yet
 	public static int rightDriveEncoderId = 8;
 	public static int grabberId = 2;//should be 3
@@ -52,11 +52,14 @@ public class RobotMap {
 	public static double driveSpeedMultiplier = 1.0;
 	
 	//Conveyor
-	public static double loadSpeed = .3;
+	public static double loadSpeed = .6;
 	public static double unloadSpeed = .75;
 	
 	//Grabber
 	public static int grabberMaxCurrent = 5;
 	public static int grabberEncoderId = 1;
+	public static double grabSpeed = 0.8;
+	public static double holdSpeed = 0.4;
+	public static double ungrabSpeed = 0.8;
 	
 }

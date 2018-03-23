@@ -3,6 +3,8 @@ package org.usfirst.frc.team4804.robot.subsystems;
 
 import org.usfirst.frc.team4804.robot.RobotMap;
 import org.usfirst.frc.team4804.robot.SeatMotor;
+import org.usfirst.frc.team4804.robot.commands.Grab;
+
 import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,7 +36,7 @@ public class Grabber extends Subsystem {
 	
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-		//setDefaultCommand(new Grab());
+		setDefaultCommand(new Grab());
     }
 	
 	public void close(double setSpeed) {
