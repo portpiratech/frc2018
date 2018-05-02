@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4804.robot.commands;
 
 import org.usfirst.frc.team4804.robot.Robot;
+import org.usfirst.frc.team4804.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
@@ -17,7 +18,7 @@ public class Autonomous extends CommandGroup {
 	
     public Autonomous(boolean gameDataPresent, boolean switchOnLeftSide) {
     	
-    	addSequential(new WaitCommand(2.0));
+    	addSequential(new WaitCommand(RobotMap.autonomousDelaySeconds));
     	
     	switch1 = Robot.switch1;
     	switch2 = Robot.switch2;
@@ -34,32 +35,32 @@ public class Autonomous extends CommandGroup {
     		if(switchOnLeftSide)
     		{
     			if(switch1.get()) {
-    				addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for 3 seconds
-    				Timer.delay(3.0);
+    				addSequential(new Drive(RobotMap.autonomousLengthSeconds, 0.6, 0.6)); //drive forward for x seconds
+    				Timer.delay(RobotMap.autonomousLengthSeconds);
     				addSequential(new LoadUnload(false, 1.0)); //unload cube
     			}
     			else
     			{
-    				addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for 3 seconds
+    				addSequential(new Drive(RobotMap.autonomousLengthSeconds, 0.6, 0.6)); //drive forward for x seconds
     			}
     		}
     		else
     		{
     			if(switch3.get())
     			{
-    				addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for 3 seconds
-    				Timer.delay(3.0);
+    				addSequential(new Drive(RobotMap.autonomousLengthSeconds, 0.6, 0.6)); //drive forward for x seconds
+    				Timer.delay(RobotMap.autonomousLengthSeconds);
     				addSequential(new LoadUnload(false, 1.0)); //unload cube
     			}
     			else
     			{
-    				addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for 3 seconds
+    				addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for x seconds
     			}
     		}
     	}
     	else //switch 2 or no switches at all
     	{
-    		addSequential(new Drive(3.0, 0.6, 0.6)); //drive forward for 3 seconds
+    		addSequential(new Drive(RobotMap.autonomousLengthSeconds, 0.6, 0.6)); //drive forward for x seconds
     	}
     	
     	//Timer.delay(3.0);

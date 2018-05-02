@@ -8,6 +8,7 @@ import org.usfirst.frc.team4804.robot.commands.Lift;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -36,14 +37,15 @@ public class Lifter extends Subsystem {
     public void liftDrive() {
     	
     	double liftSpeed = OI.operatorController.getY(Hand.kRight);
+    	liftSpeed *= RobotMap.lifterSpeedMultiplier;
     	
-    	if(Math.abs(liftSpeed) < 0.2)
-    	{
-    		liftSpeed = 0;
-    	}
-    	motor.setSpeed(liftSpeed);
+    	motor.setSpeed(liftSpeed, RobotMap.lifterSpeedDeadband);
 
-    	
+    	displayCurrent();
+    }
+    
+    public void displayCurrent() {
+    	SmartDashboard.putNumber("Lifter current", motor.getMotor().getOutputCurrent());
     }
 }
 

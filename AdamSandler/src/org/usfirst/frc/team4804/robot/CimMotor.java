@@ -23,4 +23,15 @@ public class CimMotor {
 		public void setSpeed(double speed){
 			motor.set(ControlMode.PercentOutput, speed);
 		}
+		
+		public void setSpeed(double speed, double deadband){
+			if(Math.abs(speed) < deadband)
+			{
+				this.setSpeed(0);
+			}
+			else
+			{
+				this.setSpeed(speed);
+			}
+		}
 }

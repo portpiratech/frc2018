@@ -77,6 +77,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("Grab speed", RobotMap.grabSpeed);
     	SmartDashboard.putNumber("Hold speed", RobotMap.holdSpeed);
     	SmartDashboard.putNumber("Ungrab speed", RobotMap.ungrabSpeed);
+    	SmartDashboard.putNumber("Auto delay", RobotMap.autonomousDelaySeconds);
 	}
 	
 	private void readFromSmartDashboard()
@@ -86,6 +87,7 @@ public class Robot extends IterativeRobot {
     	RobotMap.grabSpeed = SmartDashboard.getNumber("Grab speed", RobotMap.grabSpeed);
     	RobotMap.holdSpeed = SmartDashboard.getNumber("Hold speed", RobotMap.holdSpeed);
     	RobotMap.ungrabSpeed = SmartDashboard.getNumber("Ungrab speed", RobotMap.ungrabSpeed);
+    	RobotMap.autonomousDelaySeconds = SmartDashboard.getNumber("Auto delay", RobotMap.autonomousDelaySeconds);
 	}
 
 	/**

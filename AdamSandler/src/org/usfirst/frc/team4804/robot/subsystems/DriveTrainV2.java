@@ -54,26 +54,15 @@ public class DriveTrainV2 extends Subsystem {
     }
     
     public void tankArcadeDrive() {
-
+    	double leftSpeed, rightSpeed;
+    	
     	if(Robot.driveMode == Robot.DriveMode.ArcadeDrive)
     	{
     		double turnValue = -OI.driverController.getX(Hand.kLeft);
         	double throttleValue = OI.driverController.getY(Hand.kLeft);
         	
-        	double leftValue = (turnValue-throttleValue)*RobotMap.driveSpeedMultiplier;
-        	double rightValue = (turnValue+throttleValue)*RobotMap.driveSpeedMultiplier;
-        	
-        	boolean halfSpeed  = OI.driverController.getBumper(Hand.kRight);
-        	
-        	if(halfSpeed)
-        	{	
-        		leftValue /= 2;
-        		rightValue /= 2;
-        	}
-        	
-        	leftMotor.setSpeed(leftValue);
-        	rightMotor.setSpeed(rightValue);
-        	
+        	leftSpeed = (turnValue-throttleValue)*RobotMap.driveSpeedMultiplier;
+        	rightSpeed = (turnValue+throttleValue)*RobotMap.driveSpeedMultiplier;
     	}
     	else
     	{
@@ -81,21 +70,27 @@ public class DriveTrainV2 extends Subsystem {
     		double leftY = -OI.driverController.getY(Hand.kLeft);
         	double rightY = OI.driverController.getY(Hand.kRight);
         	
-        	double leftSpeed = leftY * RobotMap.driveSpeedMultiplier;
-        	double rightSpeed = rightY * RobotMap.driveSpeedMultiplier;
-        	
-        	boolean halfSpeed = OI.driverController.getBumper(Hand.kRight);
-        	
-        	if(halfSpeed)
-        	{	
-        		leftSpeed /= 2;
-        		rightSpeed /= 2;
-        	}
-        	
-        	leftMotor.setSpeed(leftSpeed);
-        	rightMotor.setSpeed(rightSpeed);
-        	
+        	leftSpeed = leftY * RobotMap.driveSpeedMultiplier;
+        	rightSpeed = rightY * RobotMap.driveSpeedMultiplier;
     	}
+    	
+    	//press right bumper for halfspeed
+    	boolean halfSpeed  = OI.driverController.getBumper(Hand.kRight);
+    	if(halfSpeed)
+    	{	
+    		leftSpeed /= 2;
+    		rightSpeed /= 2;
+    	}
+    	
+    	leftMotor.setSpeed(leftSpeed, RobotMap.driveSpeedDeadband);
+    	rightMotor.setSpeed(rightSpeed, RobotMap.driveSpeedDeadband);
+    	
+    	displayCurrent();
+    }
+    
+    public void displayCurrent() {
+    	SmartDashboard.putNumber("Left drive current", leftMotor.getMotor().getOutputCurrent());
+    	SmartDashboard.putNumber("Right drive current", rightMotor.getMotor().getOutputCurrent());
     }
 }
 

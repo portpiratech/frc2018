@@ -18,7 +18,8 @@ public class RobotMap {
 	//Trying to fix merge conflicts
 	// public static int rangefinderModule = 1;
 	
-	//XBox controller IDs
+	/*** DEVICE IDENTIFICATION NUMBERS/CHANNELS ***/
+	//XBox controller IDs & axis IDs
 	public static int driverControllerId = 0;
 	public static int operatorControllerId = 1;
 	public static int leftStickXId = 0;
@@ -30,26 +31,36 @@ public class RobotMap {
 	/* 0: PDP
 	 * 1: PCM
 	 * 2-6: TalonSRX
+	 * Else: Encoders?
 	 */
-	public static int lifterDriveId = 5;//unsure
+	public static int lifterDriveId = 5;
 	public static int leftDriveId = 4;
 	public static int rightDriveId = 6;
+	public static int grabberId = 2;
+	public static int conveyorId = 3;
 	public static int leftDriveEncoderId = 7;//7 and 8 aren't determined yet
 	public static int rightDriveEncoderId = 8;
-	public static int grabberId = 2;//should be 3
-	public static int conveyorId = 3;//should be 2
 	
-	//PWM
+	//PWM (pulse width modulation) channels
 	public static int sparkId = 0;
 	
-	//DIO
-	public static int conveyorLimitId = 11;//still not determined
+	//DIO (digital input/output) channels
 	public static int posSwitch1 = 0;
 	public static int posSwitch2 = 1;
 	public static int posSwitch3 = 2;
+	public static int conveyorLimitId = 11;//still not determined
+	
+	//Analog input devices
+	public static int grabberEncoderId = 1;
+	
+	/*** VARIABLE VALUES FOR SUBSYSTEMS/COMMANDS ***/
+	//Autonomous
+	public static double autonomousDelaySeconds = 2.0;
+	public static double autonomousLengthSeconds = 2.0;
 	
 	//DriveTrain
 	public static double driveSpeedMultiplier = 1.0;
+	public static double driveSpeedDeadband = 0.1; //won't drive unless speed >= this value
 	
 	//Conveyor
 	public static double loadSpeed = .6;
@@ -57,9 +68,11 @@ public class RobotMap {
 	
 	//Grabber
 	public static int grabberMaxCurrent = 5;
-	public static int grabberEncoderId = 1;
-	public static double grabSpeed = 0.8;
-	public static double holdSpeed = 0.4;
-	public static double ungrabSpeed = 0.8;
+	public static double grabSpeed = 0.9;
+	public static double holdSpeed = 0.6;
+	public static double ungrabSpeed = 0.9;
 	
+	//Lifter
+	public static double lifterSpeedMultiplier = 1.0;
+	public static double lifterSpeedDeadband = 0.15; //won't drive unless speed >= this value
 }
