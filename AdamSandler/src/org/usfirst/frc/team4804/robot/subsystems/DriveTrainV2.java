@@ -58,7 +58,7 @@ public class DriveTrainV2 extends Subsystem {
     	
     	if(Robot.driveMode == Robot.DriveMode.ArcadeDrive)
     	{
-    		double turnValue = -OI.driverController.getX(Hand.kLeft);
+    		double turnValue = OI.driverController.getX(Hand.kLeft);
         	double throttleValue = OI.driverController.getY(Hand.kLeft);
         	
         	leftSpeed = (turnValue-throttleValue)*RobotMap.driveSpeedMultiplier;

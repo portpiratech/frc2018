@@ -59,7 +59,7 @@ public class RobotMap {
 	public static double autonomousLengthSeconds = 2.0;
 	
 	//DriveTrain
-	public static double driveSpeedMultiplier = 1.0;
+	public static double driveSpeedMultiplier = .5;
 	public static double driveSpeedDeadband = 0.1; //won't drive unless speed >= this value
 	
 	//Conveyor
